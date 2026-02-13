@@ -1,0 +1,46 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T21:18:43.177Z",
+  "summary": "REQ-8/9/10 appear implemented on the frontend via QR payload encode/decode utilities, QR code SVG generation, and scan auto-fill (with fallback) while keeping fields editable. REQ-11 (producing and sharing a single working deployed URL) is not satisfied by code changes; the diff adds a 'Copy Live Link' button and documentation but does not provide an actual deployed URL.",
+  "missing_requirements": [
+    {
+      "id": "REQ-11",
+      "requirement": "After implementing and deploying the QR generation + full auto-fill feature, provide the user with the updated live website link (a single, working URL).",
+      "reason": "The diff introduces utilities/UI to copy the current origin and adds deployment instructions, but no actual deployed live URL is produced/shared in the changes shown.",
+      "evidence": [
+        "frontend/DEPLOYMENT.md",
+        "frontend/src/lib/liveLink.ts",
+        "frontend/src/features/dashboard/DashboardPage.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added a 'Copy Live Link' button in the dashboard header and clipboard-copy utilities to copy the current site origin.",
+      "reason": "REQ-11 asks to provide a single working deployed URL after deployment; it does not explicitly request implementing an in-app live-link copy feature/button.",
+      "evidence": [
+        "frontend/src/features/dashboard/DashboardPage.tsx",
+        "frontend/src/lib/liveLink.ts"
+      ]
+    },
+    {
+      "description": "Added deployment verification documentation describing how to obtain/share the live URL and how to test QR features.",
+      "reason": "Documentation is not requested by any of REQ-8/9/10/11 (REQ-11 requires the actual URL, not deployment instructions).",
+      "evidence": [
+        "frontend/DEPLOYMENT.md"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/DEPLOYMENT.md",
+    "frontend/src/features/dashboard/DashboardPage.tsx",
+    "frontend/src/features/dashboard/ScannerCard.tsx",
+    "frontend/src/lib/liveLink.ts",
+    "frontend/src/lib/qrGenerator.ts",
+    "frontend/src/lib/qrPayload.ts",
+    "project_state.json"
+  ]
+}

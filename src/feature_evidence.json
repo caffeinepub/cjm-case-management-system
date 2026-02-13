@@ -1,0 +1,87 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-qr-code-generation-capability-that-encodes-the-current-form-values-name-case-number-crime-number-forward-date-into-a-single-scannable-code-using-the-exact-pipe-delimited-format-name-caseno-crimeno-date",
+      "featureTitle": "Add a QR code generation capability that encodes the current form values (Name, Case Number, Crime Number, Forward Date) into a single scannable code using the exact pipe-delimited format: \"Name|CaseNo|CrimeNo|Date\".",
+      "files": [
+        "frontend/src/features/dashboard/ScannerCard.tsx"
+      ],
+      "components": [
+        "qr-code@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-when-a-qr-code-is-scanned-parse-the-scanned-value-as-name-caseno-crimeno-date-and-automatically-populate-the-name-case-number-crime-number-and-forward-date-fields-with-the-parsed-values",
+      "featureTitle": "When a QR code is scanned, parse the scanned value as \"Name|CaseNo|CrimeNo|Date\" and automatically populate the Name, Case Number, Crime Number, and Forward Date fields with the parsed values.",
+      "files": [
+        "frontend/src/features/dashboard/ScannerCard.tsx"
+      ],
+      "components": [
+        "qr-code@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-that-after-auto-fill-from-a-scanned-qr-code-all-populated-fields-remain-editable-so-the-user-can-correct-mistakes-before-submitting-add-record",
+      "featureTitle": "Ensure that after auto-fill from a scanned QR code, all populated fields remain editable so the user can correct mistakes before submitting \"Add Record\".",
+      "files": [
+        "frontend/src/features/dashboard/ScannerCard.tsx"
+      ],
+      "components": [
+        "qr-code@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-after-implementing-and-deploying-the-qr-generation-full-auto-fill-feature-provide-the-user-with-the-updated-live-website-link-to-verify-that-everything-works-correctly",
+      "featureTitle": "After implementing and deploying the QR generation + full auto-fill feature, provide the user with the updated live website link to verify that everything works correctly.",
+      "files": [
+        "frontend/DEPLOYMENT.md",
+        "frontend/src/features/dashboard/DashboardPage.tsx",
+        "frontend/src/lib/liveLink.ts"
+      ],
+      "components": [
+        "qr-code@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

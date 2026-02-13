@@ -1,0 +1,93 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "QR generation + scanned QR full-form auto-fill (editable) + share live link",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "summary": "Generate a QR code from the current form values using the exact pipe-delimited payload format Name|CaseNo|CrimeNo|Date.",
+      "acceptanceCriteria": [
+        "A user can generate a scannable code from the form values Name, Case Number, Crime Number, and Forward Date.",
+        "The encoded string uses the exact delimiter and field order: Name|CaseNo|CrimeNo|Date.",
+        "All user-facing labels/buttons related to generating the code are in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add a QR rendering dependency (e.g., a React QR code component) so the app can display a generated QR code for the computed payload string."
+        },
+        {
+          "path": "frontend/src/features/dashboard/qrPayload.ts",
+          "operation": "create",
+          "description": "Add small helpers to (1) build the exact QR payload string in the required order and delimiter (Name|CaseNo|CrimeNo|Date) from current form state and (2) optionally normalize/trim values without changing the delimiter/ordering."
+        },
+        {
+          "path": "frontend/src/features/dashboard/ScannerCard.tsx",
+          "operation": "modify",
+          "description": "Add a \"Generate QR Code\" UI that uses current form values and renders a QR code for the exact payload string. Keep all user-facing text for this feature in English. Ensure the QR payload uses the required pipe-delimited order. Also ensure the QR scanner capability continues to use the selected `qr-code` component hook (`useQRScanner`) for camera scanning; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "On successful scan, parse Name|CaseNo|CrimeNo|Date and auto-fill all four fields; fall back to setting Case Number only when format mismatch, keeping the scan beep.",
+      "acceptanceCriteria": [
+        "Scanning a QR code encoded in the specified format fills all four fields: Name, Case Number, Crime Number, and Forward Date.",
+        "If the scanned value does not match the expected 4-part format, the existing behavior remains: treat the scanned value as the Case Number only (no crash).",
+        "The existing scan success beep continues to play on successful scan."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/dashboard/qrPayload.ts",
+          "operation": "modify",
+          "description": "Add a safe parser for scanned QR values that returns parsed fields only when the value matches the expected 4-part pipe-delimited format; otherwise return a mismatch result so the caller can fall back to existing Case Number-only behavior."
+        },
+        {
+          "path": "frontend/src/features/dashboard/ScannerCard.tsx",
+          "operation": "modify",
+          "description": "Update scan handling to: (1) parse scanned data as Name|CaseNo|CrimeNo|Date and auto-populate Name, Case Number, Crime Number, and Forward Date when valid; (2) if invalid format, keep existing behavior by setting Case Number to the scanned value only; (3) continue playing the existing success beep on scan. Keep using the selected `qr-code` component hook (`useQRScanner`) and display camera errors appropriately; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Keep all auto-filled fields editable and ensure edits are what gets submitted on Add Record.",
+      "acceptanceCriteria": [
+        "After a scan populates fields, the user can manually edit Name, Case Number, Crime Number, and Forward Date using the same input controls.",
+        "Edits made after auto-fill are the values submitted when the user clicks \"Add Record\"."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/dashboard/ScannerCard.tsx",
+          "operation": "modify",
+          "description": "Ensure scanned auto-fill updates the same controlled input state used for manual typing (no read-only/locked fields), and ensure the \"Add Record\" action submits the latest edited values from those controls."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add an in-app way to copy/share the currently deployed site URL and document where to place/share the final live link post-deploy.",
+      "acceptanceCriteria": [
+        "A single, working URL to the updated deployed site is produced and shared after deployment."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/liveLink.ts",
+          "operation": "create",
+          "description": "Add a small helper to derive a shareable live URL from the current browser location (e.g., origin + path as appropriate) and a safe clipboard copy function for UI use."
+        },
+        {
+          "path": "frontend/src/features/dashboard/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Add a \"Copy Live Link\" button (English label) in the dashboard header that copies the current site URL to the clipboard using the new helper, giving the user an easy way to share/verify the live site."
+        },
+        {
+          "path": "frontend/DEPLOYMENT.md",
+          "operation": "create",
+          "description": "Add a short deployment verification note describing how to obtain the final deployed URL and where to paste/share that single working link after deployment to satisfy the requirement."
+        }
+      ]
+    }
+  ]
+}

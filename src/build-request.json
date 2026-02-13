@@ -1,0 +1,106 @@
+{
+  "kind": "build_request",
+  "title": "Add QR code generation + full-form auto-fill from scanned QR (editable) and share updated live link",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "text": "Add a QR code generation capability that encodes the current form values (Name, Case Number, Crime Number, Forward Date) into a single scannable code using the exact pipe-delimited format: \"Name|CaseNo|CrimeNo|Date\".",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-10",
+          "msg-12"
+        ],
+        "quotes": [
+          "Mai chahta hu ki jo bhi mai details de raha hu jaise  name case number crime number forward in sab ka ek barcode genrate ho jaye",
+          "Kripya yeh dono points confirm kar dein",
+          "Ji ha"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A user can generate a scannable code from the form values Name, Case Number, Crime Number, and Forward Date.",
+        "The encoded string uses the exact delimiter and field order: Name|CaseNo|CrimeNo|Date.",
+        "All user-facing labels/buttons related to generating the code are in English."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "When a QR code is scanned, parse the scanned value as \"Name|CaseNo|CrimeNo|Date\" and automatically populate the Name, Case Number, Crime Number, and Forward Date fields with the parsed values.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-9",
+          "msg-12"
+        ],
+        "quotes": [
+          "Ha barcode scan hote hi name ke coloum me name case number me case number aur aur date sab automatic feed ho jaye",
+          "scan hote hi Name, Case No, Crime No, Forward Date sab automatic fill ho jayein"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Scanning a QR code encoded in the specified format fills all four fields: Name, Case Number, Crime Number, and Forward Date.",
+        "If the scanned value does not match the expected 4-part format, the existing behavior remains: treat the scanned value as the Case Number only (no crash).",
+        "The existing scan success beep continues to play on successful scan."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Ensure that after auto-fill from a scanned QR code, all populated fields remain editable so the user can correct mistakes before submitting \"Add Record\".",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-13"
+        ],
+        "quotes": [
+          "sara details feed hone ke baad edit ka bhi option rahe jisse koi mistek hone par edit Kiya ja sake"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After a scan populates fields, the user can manually edit Name, Case Number, Crime Number, and Forward Date using the same input controls.",
+        "Edits made after auto-fill are the values submitted when the user clicks \"Add Record\"."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "After implementing and deploying the QR generation + full auto-fill feature, provide the user with the updated live website link to verify that everything works correctly.",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-15"
+        ],
+        "quotes": [
+          "Abhi kar ke web site ka link do mujhe mai chek karu sab thik h"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A single, working URL to the updated deployed site is produced and shared after deployment."
+      ]
+    }
+  ],
+  "constraints": [
+    "Keep all user-facing text in English.",
+    "Do not edit files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
+    "Backend must remain a single Motoko actor in backend/main.mo; only add migration code if persistent state schema must change."
+  ],
+  "nonGoals": [
+    "Adding third-party authentication providers (only Internet Identity is allowed, but not requested here).",
+    "Adding external databases or any non-IC backend services.",
+    "Real-time/WebSocket features."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        
+        /* CJM Brand Colors - Light Mode */
+        --background: 0.98 0 0;
+        --foreground: 0.15 0 0;
+        --card: 1 0 0;
+        --card-foreground: 0.15 0 0;
+        --popover: 1 0 0;
+        --popover-foreground: 0.15 0 0;
+        
+        /* Primary: Deep Blue (#1a2a6c) */
+        --primary: 0.25 0.15 265;
+        --primary-foreground: 0.98 0 0;
+        
+        /* Secondary: Red (#b21f1f) */
+        --secondary: 0.45 0.22 25;
+        --secondary-foreground: 0.98 0 0;
+        
+        /* Accent: Gold (#fdbb2d) */
+        --accent: 0.82 0.18 75;
+        --accent-foreground: 0.15 0 0;
+        
+        --muted: 0.96 0 0;
+        --muted-foreground: 0.50 0 0;
+        --destructive: 0.50 0.24 27;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.90 0 0;
+        --input: 0.90 0 0;
+        --ring: 0.25 0.15 265;
+        
+        --chart-1: 0.65 0.22 265;
+        --chart-2: 0.45 0.22 25;
+        --chart-3: 0.82 0.18 75;
+        --chart-4: 0.55 0.18 140;
+        --chart-5: 0.70 0.15 320;
+    }
+
+    .dark {
+        --background: 0.12 0 0;
+        --foreground: 0.98 0 0;
+        --card: 0.15 0 0;
+        --card-foreground: 0.98 0 0;
+        --popover: 0.12 0 0;
+        --popover-foreground: 0.98 0 0;
+        
+        /* Primary: Lighter Blue for dark mode */
+        --primary: 0.65 0.18 265;
+        --primary-foreground: 0.12 0 0;
+        
+        /* Secondary: Lighter Red for dark mode */
+        --secondary: 0.60 0.20 25;
+        --secondary-foreground: 0.98 0 0;
+        
+        /* Accent: Gold (same) */
+        --accent: 0.82 0.18 75;
+        --accent-foreground: 0.12 0 0;
+        
+        --muted: 0.20 0 0;
+        --muted-foreground: 0.65 0 0;
+        --destructive: 0.60 0.22 27;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.25 0 0;
+        --input: 0.25 0 0;
+        --ring: 0.65 0.18 265;
+        
+        --chart-1: 0.65 0.22 265;
+        --chart-2: 0.60 0.20 25;
+        --chart-3: 0.82 0.18 75;
+        --chart-4: 0.60 0.18 140;
+        --chart-5: 0.75 0.15 320;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+}

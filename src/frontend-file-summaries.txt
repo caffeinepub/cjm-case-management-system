@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main application component that manages authentication state and conditionally renders LoginPage or DashboardPage without page reloads.",
+  "frontend/src/features/auth/LoginPage.tsx": "Login page component with credential validation (CJM3/CJM3@123) and error messaging using shadcn/ui components.",
+  "frontend/src/features/dashboard/DashboardPage.tsx": "Dashboard layout with header containing logout and \"Copy Live Link\" buttons, manual notes textarea, scanner card, and recorded cases table.",
+  "frontend/src/features/dashboard/ScannerCard.tsx": "QR scanner and manual entry form with camera preview, QR code generation dialog using CDN-loaded library, auto-fill from scanned codes (full format or fallback to case number only), and editable fields after scan.",
+  "frontend/src/features/cases/RecordedCasesTable.tsx": "Table component displaying case records sorted by creation date with CSV download functionality.",
+  "frontend/src/features/cases/caseQueries.ts": "React Query hooks for fetching all case records and adding new records with automatic cache invalidation.",
+  "frontend/src/lib/sfx.ts": "Audio utility for playing beep sound on successful scan and record addition.",
+  "frontend/src/lib/csv.ts": "CSV export utility with proper escaping and formatting for downloading case records.",
+  "frontend/src/index.css": "Global styles with OKLCH color system customized for CJM brand colors (deep blue, red, gold).",
+  "frontend/src/hooks/useQueries.ts": "Empty placeholder file maintaining expected project structure (case queries moved to features).",
+  "frontend/src/config.ts": "Configuration utilities for creating backend actor with simplified type handling using CreateActorOptions interface.",
+  "frontend/src/backend/index.ts": "Backend actor creation utilities with custom CreateActorOptions interface for proper HttpAgent initialization and typed actor instances.",
+  "frontend/src/backend/backend.did.js": "Candid interface definition for the backend canister methods (addRecord, getAllRecords).",
+  "frontend/src/qr-code/useQRScanner.ts": "Custom React hook for QR code scanning using camera with jsQR library integration and result management.",
+  "frontend/src/camera/useCamera.ts": "Custom React hook for camera access with permission handling, error management, and photo capture capabilities.",
+  "frontend/src/lib/qrPayload.ts": "Utilities for encoding case data into pipe-delimited QR payload format (Name|CaseNo|CrimeNo|Date) and parsing scanned QR codes back into structured data with format validation.",
+  "frontend/src/lib/liveLink.ts": "Helper functions to get the current site URL and copy text to clipboard for sharing the live deployment link.",
+  "frontend/package.json": "Package configuration with qrcode.react dependency added for QR code generation functionality.",
+  "frontend/DEPLOYMENT.md": "Documentation for obtaining and sharing the live site URL after deployment, including instructions for testing QR code features.",
+  "frontend/src/lib/qrGenerator.ts": "QR code generation utilities that dynamically load the qrcode-generator library from CDN and provide functions to generate QR code SVG strings."
+}

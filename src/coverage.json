@@ -1,0 +1,83 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T21:18:43.179Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-10",
+        "summary": "Ensure that after auto-fill from a scanned QR code, all populated fields remain editable so the user can correct mistakes before submitting \"Add Record\".",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/dashboard/ScannerCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/dashboard/ScannerCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "After implementing and deploying the QR generation + full auto-fill feature, provide the user with the updated live website link to verify that everything works correctly.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/lib/liveLink.ts",
+          "frontend/src/features/dashboard/DashboardPage.tsx",
+          "frontend/DEPLOYMENT.md"
+        ],
+        "matchedFiles": [
+          "frontend/src/lib/liveLink.ts",
+          "frontend/src/features/dashboard/DashboardPage.tsx",
+          "frontend/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Add a QR code generation capability that encodes the current form values (Name, Case Number, Crime Number, Forward Date) into a single scannable code using the exact pipe-delimited format: \"Name|CaseNo|CrimeNo|Date\".",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/package.json",
+          "frontend/src/features/dashboard/qrPayload.ts",
+          "frontend/src/features/dashboard/ScannerCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/dashboard/ScannerCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "When a QR code is scanned, parse the scanned value as \"Name|CaseNo|CrimeNo|Date\" and automatically populate the Name, Case Number, Crime Number, and Forward Date fields with the parsed values.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/dashboard/qrPayload.ts",
+          "frontend/src/features/dashboard/ScannerCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/dashboard/ScannerCard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/DEPLOYMENT.md",
+    "frontend/src/features/dashboard/DashboardPage.tsx",
+    "frontend/src/features/dashboard/ScannerCard.tsx",
+    "frontend/src/lib/liveLink.ts",
+    "frontend/src/lib/qrGenerator.ts",
+    "frontend/src/lib/qrPayload.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

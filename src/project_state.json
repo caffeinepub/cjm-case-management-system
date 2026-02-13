@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a simple browser-based CJM Case Management System with login + dashboard for scanning/entering case records, storing them in a table, exporting to CSV, and supporting barcode/QR generation + scanning to auto-fill all case fields with an option to edit after auto-fill.",
+  "architectural_notes": [
+    "Single-page HTML/CSS/JS app with login view and dashboard view toggled via DOM.",
+    "Uses html5-qrcode library (loaded from unpkg) for in-browser QR scanning.",
+    "Authentication is client-side only with hardcoded credentials (CJM3 / CJM3@123).",
+    "Records are stored in the in-memory DOM table only (no backend or persistence).",
+    "CSV export is generated client-side via Blob and downloaded in-browser.",
+    "Add encode/decode format for barcode/QR payload containing Name, Case No, Crime No, Forward Date (e.g., delimiter-separated string) and implement generator + scanner parsing to populate all form inputs."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-login-screen-that-validates-credentials-exactly-as-login-id-cjm3-and-password-cjm3-123-on-success-navigate-to-the-dashboard-on-failure-display-an-in-page-error-message-in-english-no-browser-alert",
+      "title": "Create a login screen that validates credentials exactly as: Login ID = \"CJM3\" and Password = \"CJM3@123\". On success, navigate to the dashboard; on failure, display an in-page error message in English (no browser alert).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-dashboard-layout-with-1-a-header-showing-cjm3-case-management-and-a-logout-button-2-a-top-general-manual-typing-notes-textarea-3-a-two-column-responsive-grid-where-the-left-card-is-scanner-manual-entry-and-the-right-card-is-recorded-cases-with-a-table-and-a-download-csv-button-all-user-facing-text-must-be-in-english",
+      "title": "Implement the dashboard layout with: (1) a header showing \"CJM3 - Case Management\" and a Logout button, (2) a top \"General Manual Typing / Notes\" textarea, (3) a two-column responsive grid where the left card is \"Scanner / Manual Entry\" and the right card is \"Recorded Cases\" with a table and a \"Download CSV\" button. All user-facing text must be in English.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-qr-scanning-on-the-dashboard-using-the-html5-qrcode-library-originally-referenced-as-https-unpkg-com-html5-qrcode-when-a-qr-code-is-successfully-scanned-display-last-scanned-value-and-populate-the-case-number-input-with-the-scanned-value",
+      "title": "Add QR scanning on the dashboard using the html5-qrcode library (originally referenced as https://unpkg.com/html5-qrcode). When a QR code is successfully scanned, display \"Last Scanned: <value>\" and populate the Case Number input with the scanned value.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-add-record-flow-capture-name-case-number-crime-number-forward-date-and-the-current-manual-note-text-validate-that-name-and-case-number-are-required-on-success-prepend-the-new-record-to-the-top-of-the-recorded-cases-table-clear-name-case-crime-inputs-afterward-do-not-clear-the-manual-note-textarea",
+      "title": "Implement the \"Add Record\" flow: capture Name, Case Number, Crime Number, Forward Date, and the current Manual Note text; validate that Name and Case Number are required; on success, prepend the new record to the top of the recorded cases table; clear Name/Case/Crime inputs afterward (do not clear the manual note textarea).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-play-an-audible-beep-on-successful-qr-scan-and-on-successful-record-add-using-the-exact-audio-url-https-www-soundjay-com-buttons-beep-07a-mp3",
+      "title": "Play an audible beep on successful QR scan and on successful record add, using the exact audio URL: https://www.soundjay.com/buttons/beep-07a.mp3.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-csv-export-for-the-recorded-cases-with-header-columns-name-case-no-crime-no-forward-date-note-download-filename-must-be-cjm-case-data-csv",
+      "title": "Implement CSV export for the recorded cases with header columns: Name, Case No, Crime No, Forward Date, Note; download filename must be \"CJM_Case_Data.csv\".",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-backend-canister-apis-to-store-and-retrieve-case-records-name-case-number-crime-number-forward-date-manual-note-so-that-records-are-not-lost-on-refresh-and-wire-the-frontend-to-these-apis-using-react-query-for-fetch-mutate-and-cache-invalidation",
+      "title": "Create backend canister APIs to store and retrieve case records (Name, Case Number, Crime Number, Forward Date, Manual Note) so that records are not lost on refresh, and wire the frontend to these APIs using React Query for fetch/mutate and cache invalidation.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-qr-code-generation-capability-that-encodes-the-current-form-values-name-case-number-crime-number-forward-date-into-a-single-scannable-code-using-the-exact-pipe-delimited-format-name-caseno-crimeno-date",
+      "title": "Add a QR code generation capability that encodes the current form values (Name, Case Number, Crime Number, Forward Date) into a single scannable code using the exact pipe-delimited format: \"Name|CaseNo|CrimeNo|Date\".",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-a-qr-code-is-scanned-parse-the-scanned-value-as-name-caseno-crimeno-date-and-automatically-populate-the-name-case-number-crime-number-and-forward-date-fields-with-the-parsed-values",
+      "title": "When a QR code is scanned, parse the scanned value as \"Name|CaseNo|CrimeNo|Date\" and automatically populate the Name, Case Number, Crime Number, and Forward Date fields with the parsed values.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-that-after-auto-fill-from-a-scanned-qr-code-all-populated-fields-remain-editable-so-the-user-can-correct-mistakes-before-submitting-add-record",
+      "title": "Ensure that after auto-fill from a scanned QR code, all populated fields remain editable so the user can correct mistakes before submitting \"Add Record\".",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-implementing-and-deploying-the-qr-generation-full-auto-fill-feature-provide-the-user-with-the-updated-live-website-link-to-verify-that-everything-works-correctly",
+      "title": "After implementing and deploying the QR generation + full auto-fill feature, provide the user with the updated live website link to verify that everything works correctly.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Login page with credential check and dashboard access",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Dashboard UI for case management (scanner/manual entry + recorded cases table)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "QR code scanning integration to populate Case Number field",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add record flow: capture name/case/crime/forward date/manual note and prepend to table with beep feedback",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Export recorded cases table to CSV download",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Generate a barcode/QR from entered case details (Name, Case No, Crime No, Forward Date) and on scan auto-fill all corresponding form fields",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Provide an edit option after barcode/QR auto-fill to correct mistakes (manual editing workflow)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "CJM Case Management System",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
